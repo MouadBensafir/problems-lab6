@@ -7,8 +7,8 @@ public class Book extends Document {
     public String getAuthor() { return this.author; }
     public int getNumPages() { return this.nbrPages; }
 
-    public Book(String title, int numRec, int nbrPages, String author) {
-        super(title, numRec);
+    public Book(String title, int nbrPages, String author) {
+        super(title);
         this.nbrPages = nbrPages;
         this.author = author;
     }

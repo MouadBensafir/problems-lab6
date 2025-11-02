@@ -28,7 +28,7 @@ public class Library {
         return documents.remove(doc);
     }
 
-    public Document getDocument(int numEnrg) {
+    public Document document(int numEnrg) {
         for (Document d : documents) {
             if (d.getNumRec() == numEnrg) {
                 return d;

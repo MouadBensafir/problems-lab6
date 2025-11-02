@@ -96,13 +96,18 @@ public class ListPerformanceComparison {
 }
 
 /* Analysis of the results
-We can see that when we try to randomly access, add or delete an element, it is faster for arraylists than linked list,
-this is because arrayLists are literal arrays in memory, ordered by indexing,
-so accessing randomly a position in the array goes back to a simple mathematical equations, whereas
-linkedLists must go through all elements one by one until reaching the randomly chosen elemnt.
+These performance tests show the main differences between ArrayList and LinkedList.
+ArrayList is much faster for random access because its elements are stored in memory using
+direct indexing, whereas LinkedList must traverse nodes sequentially to reach a given element.
 
-However, as we can see from the results, linked lists are faster when it omes to insertions and deletions
-at the start of end of the array. This is because when doing so, we're just changing one attribute one node,
- */
+
+LinkedList is only faster for sequential insertions and deletions at the beginning or end of the list,
+because it can update the first or last pointers directly, whereas ArrayList must shift elements when
+modifying the start of the list.
+
+In summary, ArrayList is preferable when fast random access is required, while LinkedList is favorable
+when we have frequent insertions or deletions especially at the beginning or end of the list.
+
+*/
 
 
