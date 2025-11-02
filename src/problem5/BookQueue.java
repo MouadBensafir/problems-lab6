@@ -20,4 +20,12 @@ public class BookQueue {
     public Book peek() {
         return queue.getFirst();
     }
+
+    public void display() {
+        System.out.println("Queue contents (front to back):");
+        for (int i = 0; i < queue.size(); i++) {
+            System.out.println("- " + queue.get(i));
+        }
+    }
+
 }

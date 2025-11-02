@@ -17,12 +17,15 @@ public class Shop
         String keepShopping = "y";
         do
         {
-            System.out.print ("Enter the name of the item: ");
+            System.out.print("Enter the name of the item: ");
             itemName = scan.nextLine();
-            System.out.print ("Enter the unit price: ");
+
+            System.out.print("Enter the unit price: ");
             itemPrice = scan.nextDouble();
-            System.out.print ("Enter the quantity: ");
+
+            System.out.print("Enter the quantity: ");
             quantity = scan.nextInt();
+            scan.nextLine(); // empty buffer for the rest of the line
 
             // *** Create a new item and add it to the cart
             item = new Item(itemName, itemPrice, quantity);
@@ -33,14 +36,15 @@ public class Shop
             System.out.println("\n== Content of the cart ==");
             for (Item i : cart) {
                 System.out.println("- " + i);
-                totalPrice +=  i.getPrice() * i.getQuantity();
+                totalPrice += i.getPrice() * i.getQuantity();
             }
+
             NumberFormat fmt = NumberFormat.getCurrencyInstance();
             System.out.println("Total Price : " + fmt.format(totalPrice) + "\n");
 
-            System.out.print ("Continue shopping (y/n)? ");
+            System.out.print("Continue shopping (y/n)? ");
             keepShopping = scan.nextLine();
         }
-        while (keepShopping.equals("y"));
+        while (keepShopping.equalsIgnoreCase("y"));
     }
 }

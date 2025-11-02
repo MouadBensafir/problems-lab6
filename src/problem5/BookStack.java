@@ -27,7 +27,9 @@ public class BookStack {
 
     public void display() {
         System.out.println("Stack contents (top to bottom):");
-
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            System.out.println("- " + stack.get(i));
+        }
     }
 
 
