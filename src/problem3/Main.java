@@ -92,9 +92,9 @@ public class Main {
                     break;
                 case 3:
                     System.out.print("Enter the record number of the document to delete: ");
-                    int numEnrg = sc.nextInt();
+                    int numRec = sc.nextInt();
                     sc.nextLine();
-                    Document toDelete = library.document(numEnrg);
+                    Document toDelete = library.document(numRec);
                     if (toDelete != null && library.delete(toDelete)) {
                         System.out.println("Document deleted successfully.");
                     } else {
