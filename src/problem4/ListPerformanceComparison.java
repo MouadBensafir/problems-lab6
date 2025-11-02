@@ -14,13 +14,13 @@ public class ListPerformanceComparison {
 
 
         System.out.println("---- Performance Comparison ----");
-
-        System.out.println("---- Populate both lists ----");
+        Random random = new Random();
         for (int i = 0; i < SIZE; i++) {
-            //code here
-            //code here
+            arrayList.add(random.nextInt(1000));
+            linkedList.add(random.nextInt(1000));
         }
 
+        System.out.println("---- Populate both lists ----");
         // 2️⃣ Random insertions and deletions
         testRandomInsertDelete(arrayList, "ArrayList");
         testRandomInsertDelete(linkedList, "LinkedList");
@@ -40,7 +40,8 @@ public class ListPerformanceComparison {
         Random random = new Random();
         long start = System.nanoTime();
 
-        // insert your code here
+        list.add(SIZE/2, random.nextInt(1000));
+        list.remove(random.nextInt(SIZE));
 
         long end = System.nanoTime();
         System.out.printf("%s - Random insert/delete: %.3f ms%n",
@@ -51,14 +52,25 @@ public class ListPerformanceComparison {
 
     private static void testSequentialInsertDelete(List<Integer> list, String name) {
         long start = System.nanoTime();
+        Random random = new Random();
 
         // Insertions at beginning and end
-
-        // add your code here
+        if (list instanceof ArrayList arr) {
+            arr.add(0, random.nextInt(1000));
+            arr.add(SIZE-1, random.nextInt(1000));
+        } else if (list instanceof LinkedList linkd) {
+            linkd.addFirst(random.nextInt(1000));
+            linkd.addLast(random.nextInt(1000));
+        }
 
         // Deletions at beginning and end
-
-        // add your code here
+        if (list instanceof ArrayList arr) {
+            arr.remove(0);
+            arr.remove(SIZE-1);
+        } else if (list instanceof LinkedList linkd) {
+            linkd.removeFirst();
+            linkd.removeLast();
+        }
 
         long end = System.nanoTime();
         System.out.printf("%s - Sequential insert/delete (start/end): %.3f ms%n",
@@ -73,11 +85,24 @@ public class ListPerformanceComparison {
 
         long sum = 0;
         // sum of the all elements in the list
-       // insert your code here
+        for (Integer num : list) {
+            sum += num;
+        }
 
         long end = System.nanoTime();
         System.out.printf("%s - Random access (get): %.3f ms%n",
                 name, (end - start) / 1_000_000.0);
     }
 }
+
+/* Analysis of the results
+We can see that when we try to randomly access, add or delete an element, it is faster for arraylists than linked list,
+this is because arrayLists are literal arrays in memory, ordered by indexing,
+so accessing randomly a position in the array goes back to a simple mathematical equations, whereas
+linkedLists must go through all elements one by one until reaching the randomly chosen elemnt.
+
+However, as we can see from the results, linked lists are faster when it omes to insertions and deletions
+at the start of end of the array. This is because when doing so, we're just changing one attribute one node,
+ */
+
 
